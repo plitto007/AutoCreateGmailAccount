@@ -33,7 +33,7 @@ class CreateGmail:
         options.add_experimental_option('w3c', False)  ### added this line
         options.add_argument("--disable-popup-blocking")
         options.add_argument("--disable-notifications")
-        self._browser = webdriver.Chrome(options=options)
+        self._browser = webdriver.Chrome(chrome_options=options)
         self._browser.delete_all_cookies()
         self._browser.get("https://accounts.google.com/SignUp?hl=en")
 
