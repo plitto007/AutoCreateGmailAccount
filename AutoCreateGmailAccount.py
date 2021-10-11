@@ -6,6 +6,7 @@
 
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import pandas as pd
 import random
 import time
@@ -24,7 +25,15 @@ class CreateGmail:
         self.Initialize()
 
     def Initialize(self):
-        self._browser = webdriver.Chrome()
+        options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_experimental_option('w3c', False)  ### added this line
+        options.add_argument("--disable-popup-blocking")
+        options.add_argument("--disable-notifications")
+        self._browser = webdriver.Chrome(options=options)
         self._browser.delete_all_cookies()
         self._browser.get("https://accounts.google.com/SignUp?hl=en")
 
